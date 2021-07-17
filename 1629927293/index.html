@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Fat Bob">
+
+
+
+
+
+<title>Add Image To Hexo Blog Post | FatBob&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Fatbob&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Fatbob&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Add Image To Hexo Blog Post</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fat Bob</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 8, 2020&nbsp;&nbsp;19:49:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/programming/">programming;</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>在使用Hexo的时候，最困扰的一个问题应该是<strong>图床</strong>的问题了。</p>
+<p>今天尝试了一下插件 <a href="https://www.npmjs.com/package/hexo-asset-link" target="_blank" rel="noopener">hexo-asset-link</a>，获得了不错的用户体验。终于可以愉快的写作啦！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60a.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60a.png?v8">😊</span></p>
+<p>插件<code>hexo-asset-link</code>通过在<code>source/_posts</code>下新建与文章同名文件夹的方式来存放图片。<br>
+这样当博客推送到github仓库的时候，对应的图片资源也同时上床。免去了管理图床的烦恼。</p>
+<p>具体的原理和步骤可以参考文章：</p>
+<ul>
+<li><a href="https://liolok.github.io/en/How-to-Add-Image-to-Hexo-Blog-Post/" target="_blank" rel="noopener">How to Add Image to Hexo Blog Post</a></li>
+<li><a href="https://univer2012.github.io/2017/04/23/6how-to-insert-picture-in-hexo-blog/" target="_blank" rel="noopener">hexo博客中如何插入图片</a></li>
+</ul>
+<p>我自己就先安装插件，然后通过在文章引用的方式来展示图片。</p>
+<p>在<strong>站点</strong>配置文件<code>_config.yml</code>修改参数为<code>true</code>：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">...</span><br><span class="line">post_asset_folder: true</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
+<p>然后就可以安装插件和使用了。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --save hexo-asset-link</span><br><span class="line">![my test image](Test-Image-1.png)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>注意</strong></p>
+<ol>
+<li>图片的文件名不能够有空格</li>
+<li>图片路径跟Markdown不兼容。<br>
+例如，在MD文章要显示一个图片可以能是这样的：<br>
+<code>![蓝色](./test_folder/hexo_post.png)</code><br>
+但是，在Hexo博客里面，路径要删除<br>
+<code>![蓝色](hexo_post.png)</code></li>
+<li>删除文章的时候，最好把存放图片的文件夹一并删除</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+	
+<div style="text-align:center;color: #ccc;font-size:14px;">
+<br><br>------------- 本文结束 <i class="fa fa-heart-o"></i> 感谢您的阅读-------------
+</div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fat Bob</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="fatbobgo.github.io/1629927293/">fatbobgo.github.io/1629927293/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Why so serious?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/hexo/"># hexo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/489784940/">Ubuntu Pastebin</a>
+            
+            
+            <a class="next" rel="next" href="/10096127/">hexo-git-backup usage</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+
+   <div class="copyright">
+        <span>Fat Bob © 2018 - 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+
+<!-- 引入不蒜子-->
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 开始添加本站访客数-->
+		<span id="busuanzi_container_site_pv">
+		    本站总访问量: <span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		    本站总访客: <span id="busuanzi_value_site_uv"></span>
+		</span>
+<!-- 添加完成 -->
+
+</footer>
+
+    </div>
+<script src="/js/hexo_resize_image.js"></script>
+</body>
+</html>
