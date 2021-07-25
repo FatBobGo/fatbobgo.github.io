@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Fat Bob">
+
+
+
+
+
+<title>Add eMail Notification for Valine | FatBob&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Fatbob&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Fatbob&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Add eMail Notification for Valine</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fat Bob</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 16, 2020&nbsp;&nbsp;17:06:19</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/programming/">programming</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="前言">前言</h2>
+<p>Valine提供的新评论通知功能比较弱。好消息是，已经有人开发一个增强版本了：<a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine-Admin</a>。</p>
+<h2 id="安装">安装</h2>
+<p>具体步骤可以参考博客<a href="https://deserts.io/valine-admin-document/" target="_blank" rel="noopener">deserts.io</a>，github的Readme并不是最新的。</p>
+<ul>
+<li>记得添加<strong>定时器</strong>来避免免费leanclound的每天免费6小时限制。</li>
+<li>新版的Valine-Admin已经支持邮箱服务<code>SMTP_SERVICE</code>。不需要自己填写<code>SMTP_HOST/SMTP_PASS/SMTP_SECURE</code>等参数。</li>
+<li><code>SITE_URL</code>记得把后面的斜杠去掉。</li>
+<li><code>SMTP_PASS</code>填写的是<strong>SMTP服务授权码</strong>！不是邮箱密码。开通SMTP服务的时候可以设置/重设。</li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://github.com/DesertsP/Valine-Admin" target="_blank" rel="noopener">Valine-Admin官网</a></li>
+<li><a href="http://www.zhaojun.im/hexo-valine-modify/" target="_blank" rel="noopener">Hexo 优化 — 支持邮件通知的评论 Valine 增强版</a></li>
+<li><a href="https://blog.fcwalkers.com/2018/09/04/tech_stack/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9FValine%E5%AE%9E%E7%8E%B0%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92/" target="_blank" rel="noopener">评论系统Valine实现邮件提醒</a></li>
+<li><a href="https://leancloud.cn/docs/leanengine_plan.html#hash633315134" target="_blank" rel="noopener">防止云引擎休眠</a></li>
+</ul>
+<h2 id="设置截图">设置截图</h2>
+<ul>
+<li>代码仓库设置：<img src="code_repo.png" alt=""></li>
+<li>环境变量设置：<img src="env_varialbe.png" alt=""></li>
+<li>成功系统日志：<img src="success_log.png" alt=""></li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+	
+<div style="text-align:center;color: #ccc;font-size:14px;">
+<br><br>------------- 本文结束 <i class="fa fa-heart-o"></i> 感谢您的阅读-------------
+</div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fat Bob</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="fatbobgo.github.io/3699594245/">fatbobgo.github.io/3699594245/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Why so serious?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/hexo/"># hexo</a>
+                    
+                        <a href="/tags/chic/"># chic</a>
+                    
+                        <a href="/tags/valine/"># valine</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/1491459787/">Ubuntu下好用的 Markdown编辑器</a>
+            
+            
+            <a class="next" rel="next" href="/2205704346/">Add Valine & Page Views for Hexo Chic</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+
+   <div class="copyright">
+        <span>Fat Bob © 2018 - 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+
+<!-- 引入不蒜子-->
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 开始添加本站访客数-->
+		<span id="busuanzi_container_site_pv">
+		    本站总访问量: <span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		    本站总访客: <span id="busuanzi_value_site_uv"></span>
+		</span>
+<!-- 添加完成 -->
+
+</footer>
+
+    </div>
+<script src="/js/hexo_resize_image.js"></script>
+</body>
+</html>
